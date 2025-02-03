@@ -48,7 +48,7 @@ document.addEventListener('DOMContentLoaded', () => {
         data: {
             labels: ['GDP Contribution', 'Other'],
             datasets: [{
-                data: [gdpData.percentage, 100 - gdpData.percentage],
+                data: [gdpData.percentage, 75],
                 backgroundColor: ['#FF6384', '#36A2EB']
             }]
         }
@@ -63,7 +63,7 @@ document.addEventListener('DOMContentLoaded', () => {
         data: {
             labels: ['Export Contribution', 'Other'],
             datasets: [{
-                data: [exportData.percentage, 100 - exportData.percentage],
+                data: [exportData.percentage, 58.5],
                 backgroundColor: ['#FFCE56', '#FF6384']
             }]
         }
@@ -78,7 +78,7 @@ document.addEventListener('DOMContentLoaded', () => {
         data: {
             labels: ['TSMC Market Share', 'Other'],
             datasets: [{
-                data: [marketShareData.percentage, 100 - marketShareData.percentage],
+                data: [marketShareData.percentage, 46],
                 backgroundColor: ['#36A2EB', '#FFCE56']
             }]
         }
@@ -93,7 +93,7 @@ document.addEventListener('DOMContentLoaded', () => {
         data: {
             labels: ['TSMC Stock Market Impact', 'Other'],
             datasets: [{
-                data: [stockMarketImpactData.percentage, 100 - stockMarketImpactData.percentage],
+                data: [stockMarketImpactData.percentage, 70],
                 backgroundColor: ['#FF6384', '#36A2EB']
             }]
         }
