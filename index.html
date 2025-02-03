@@ -8,25 +8,36 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
-    <h1>Taiwan Economy Dependence on Semiconductors</h1>
-    <div class="chart-container">
-        <canvas id="gdpChart"></canvas>
-        <p id="gdpDescription"></p>
-    </div>
-    <div class="chart-container">
-        <canvas id="exportChart"></canvas>
-        <p id="exportDescription"></p>
-    </div>
-    <div class="chart-container">
-        <canvas id="tsmcMarketShareChart"></canvas>
-        <p id="tsmcMarketShareDescription"></p>
-    </div>
-    <div class="chart-container">
-        <canvas id="tsmcStockMarketImpactChart"></canvas>
-        <p id="tsmcStockMarketImpactDescription"></p>
-    </div>
-    <h2>Sources</h2>
-    <ul id="sourcesList"></ul>
+    <header>
+        <h1>Taiwan Economy Dependence on Semiconductors</h1>
+    </header>
+    <main>
+        <div class="charts-grid">
+            <div class="chart-container">
+                <canvas id="gdpChart"></canvas>
+                <p id="gdpDescription"></p>
+            </div>
+            <div class="chart-container">
+                <canvas id="exportChart"></canvas>
+                <p id="exportDescription"></p>
+            </div>
+            <div class="chart-container">
+                <canvas id="tsmcMarketShareChart"></canvas>
+                <p id="tsmcMarketShareDescription"></p>
+            </div>
+            <div class="chart-container">
+                <canvas id="tsmcStockMarketImpactChart"></canvas>
+                <p id="tsmcStockMarketImpactDescription"></p>
+            </div>
+        </div>
+        <section class="sources-section">
+            <h2>Sources</h2>
+            <ul id="sourcesList"></ul>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2025 Taiwan Semiconductor Economy Analysis</p>
+    </footer>
     <script src="scripts.js"></script>
 </body>
 </html>
