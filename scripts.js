@@ -1,80 +1,69 @@
 // scripts.js
 document.addEventListener('DOMContentLoaded', () => {
     const data = {
-        "global_semiconductor_market": {
-            "country_manufacturing_share": {
-                "china": 24,
-                "taiwan": 21,
-                "south_korea": 19,
-                "usa": 13,
-                "japan": 10,
-                "europe": 9,
-                "others": 4,
-                "description": "Country-wise semiconductor manufacturing shares in the global market."
-            },
-            "company_market_share": {
-                "tsmc": 54,
-                "samsung": 19,
-                "intel": 10,
-                "others": 17,
-                "description": "Market share of major semiconductor manufacturing companies."
-            },
-            "semiconductor_type": {
-                "memory": 33,
-                "logic": 25,
-                "analog": 12,
-                "discrete": 5,
-                "optical": 15,
-                "sensor": 5,
-                "other": 5,
-                "description": "Distribution of semiconductor types in the global market."
-            },
-            "revenue_distribution": {
-                "asia": 60,
-                "north_america": 20,
-                "europe": 15,
-                "rest_of_the_world": 5,
-                "description": "Global revenue distribution of semiconductor sales."
+        "russia_economy_dependence_on_oil": {
+            "gdp_contribution": {
+                "oil_and_gas": 30,
+                "other": 70,
+                "description": "Oil and gas account for approximately 30% of Russia's gross domestic product (GDP)."
             },
             "export_contribution": {
-                "high_tech": 65,
-                "mid_tech": 25,
-                "low_tech": 10,
-                "description": "Contribution of semiconductors to global export levels."
+                "oil_exports": 52,
+                "gas_exports": 16,
+                "other": 32,
+                "description": "Oil and gas exports comprise a significant portion of Russia's total exports."
+            },
+            "government_revenue": {
+                "oil_revenue": 45,
+                "gas_revenue": 15,
+                "other": 40,
+                "description": "Oil and gas revenues constitute a major part of the Russian government's revenue."
             },
             "employment_impact": {
-                "direct": 20,
-                "indirect": 30,
-                "supporting": 50,
-                "description": "Impact of the semiconductor industry on global employment."
+                "direct_oil": 10,
+                "indirect_oil": 20,
+                "other": 70,
+                "description": "The oil sector directly and indirectly impacts a significant portion of employment in Russia."
             },
-            "research_development": {
-                "semiconductors": 35,
-                "other": 65,
-                "description": "Share of research and development spending on semiconductors."
+            "global_market_share": {
+                "oil": 12,
+                "gas": 17,
+                "other": 71,
+                "description": "Russia holds a substantial share of the global oil and gas market."
             },
-            "future_growth": {
-                "asia": 50,
-                "north_america": 20,
-                "europe": 20,
-                "rest_of_the_world": 10,
-                "description": "Predicted future growth of the semiconductor market by region."
+            "investment": {
+                "oil_sector": 40,
+                "gas_sector": 20,
+                "non_oil_gas_sector": 40,
+                "description": "Investment in the oil and gas sector is substantial compared to other sectors."
+            },
+            "energy_production": {
+                "oil": 50,
+                "gas": 30,
+                "renewable": 20,
+                "description": "Oil dominates Russia's energy production, with significant contributions from gas and renewable sources."
+            },
+            "sector_impact": {
+                "oil_sector": 40,
+                "gas_sector": 20,
+                "other_sectors": 40,
+                "description": "The oil and gas sectors have a balanced impact compared to other sectors in the economy."
             }
         },
         "sources": [
             {
-                "title": "Global Semiconductor Market Report 2025",
-                "url": "https://example.com/global-semiconductor-market-report-2025",
+                "title": "Russia's Economic Outlook",
+                "url": "https://example.com/russias-economic-outlook",
                 "accessed_date": "2025-02-01"
             },
             {
-                "title": "Semiconductor Manufacturing and its Impact",
-                "url": "https://example.com/semiconductor-manufacturing-impact",
+                "title": "The Role of Oil and Gas in Russia's Economy",
+                "url": "https://example.com/role-of-oil-gas-in-russia-economy",
                 "accessed_date": "2025-02-01"
             },
             {
-                "title": "Top Semiconductor Companies",
-                "url": "https://en.wikipedia.org/wiki/List_of_largest_semiconductor_companies",
+                "title": "Gazprom",
+                "url": "https://en.wikipedia.org/wiki/Gazprom",
                 "accessed_date": "2025-02-01"
             }
         ]
@@ -101,161 +90,143 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     const colors = {
-        china: '#FF4136',
-        taiwan: '#0074D9',
-        south_korea: '#2ECC40',
-        usa: '#FFDC00',
-        japan: '#B10DC9',
-        europe: '#FF851B',
-        others: '#AAAAAA',
-        tsmc: '#001f3f',
-        samsung: '#0074D9',
-        intel: '#3D9970',
-        memory: '#FF4136',
-        logic: '#0074D9',
-        analog: '#2ECC40',
-        discrete: '#FFDC00',
-        optical: '#B10DC9',
-        sensor: '#FF851B',
-        asia: '#7FDBFF',
-        north_america: '#39CCCC',
-        europe: '#3D9970',
-        rest_of_the_world: '#AAAAAA',
-        high_tech: '#FF4136',
-        mid_tech: '#0074D9',
-        low_tech: '#2ECC40',
-        direct: '#FF851B',
-        indirect: '#B10DC9',
-        supporting: '#AAAAAA'
+        oil: '#FF4136',
+        gas: '#0074D9',
+        other: '#2ECC40',
+        direct_oil: '#FF851B',
+        indirect_oil: '#B10DC9',
+        renewable: '#7FDBFF',
+        non_oil_gas_sector: '#AAAAAA',
+        other_sectors: '#3D9970'
     };
 
-    // Render Country Manufacturing Share Chart
-    const countryManufacturingShareData = data.global_semiconductor_market.country_manufacturing_share;
-    const countryManufacturingShareCtx = document.getElementById('countryManufacturingShareChart').getContext('2d');
-    new Chart(countryManufacturingShareCtx, {
+    // Render GDP Contribution Chart
+    const gdpData = data.russia_economy_dependence_on_oil.gdp_contribution;
+    const gdpCtx = document.getElementById('gdpChart').getContext('2d');
+    new Chart(gdpCtx, {
         type: 'pie',
         data: {
-            labels: ['China', 'Taiwan', 'South Korea', 'USA', 'Japan', 'Europe', 'Others'],
+            labels: ['Oil and Gas', 'Other'],
             datasets: [{
-                data: [countryManufacturingShareData.china, countryManufacturingShareData.taiwan, countryManufacturingShareData.south_korea, countryManufacturingShareData.usa, countryManufacturingShareData.japan, countryManufacturingShareData.europe, countryManufacturingShareData.others],
-                backgroundColor: [colors.china, colors.taiwan, colors.south_korea, colors.usa, colors.japan, colors.europe, colors.others]
+                data: [gdpData.oil_and_gas, gdpData.other],
+                backgroundColor: [colors.oil, colors.other]
             }]
         },
         options: chartOptions
     });
-    document.getElementById('countryManufacturingShareDescription').innerText = countryManufacturingShareData.description;
-
-    // Render Company Market Share Chart
-    const companyMarketShareData = data.global_semiconductor_market.company_market_share;
-    const companyMarketShareCtx = document.getElementById('companyMarketShareChart').getContext('2d');
-    new Chart(companyMarketShareCtx, {
-        type: 'pie',
-        data: {
-            labels: ['TSMC', 'Samsung', 'Intel', 'Others'],
-            datasets: [{
-                data: [companyMarketShareData.tsmc, companyMarketShareData.samsung, companyMarketShareData.intel, companyMarketShareData.others],
-                backgroundColor: [colors.tsmc, colors.samsung, colors.intel, colors.others]
-            }]
-        },
-        options: chartOptions
-    });
-    document.getElementById('companyMarketShareDescription').innerText = companyMarketShareData.description;
-
-    // Render Semiconductor Type Chart
-    const semiconductorTypeData = data.global_semiconductor_market.semiconductor_type;
-    const semiconductorTypeCtx = document.getElementById('semiconductorTypeChart').getContext('2d');
-    new Chart(semiconductorTypeCtx, {
-        type: 'pie',
-        data: {
-            labels: ['Memory', 'Logic', 'Analog', 'Discrete', 'Optical', 'Sensor', 'Other'],
-            datasets: [{
-                data: [semiconductorTypeData.memory, semiconductorTypeData.logic, semiconductorTypeData.analog, semiconductorTypeData.discrete, semiconductorTypeData.optical, semiconductorTypeData.sensor, semiconductorTypeData.other],
-                backgroundColor: [colors.memory, colors.logic, colors.analog, colors.discrete, colors.optical, colors.sensor, colors.others]
-            }]
-        },
-        options: chartOptions
-    });
-    document.getElementById('semiconductorTypeDescription').innerText = semiconductorTypeData.description;
-
-    // Render Revenue Distribution Chart
-    const revenueDistributionData = data.global_semiconductor_market.revenue_distribution;
-    const revenueDistributionCtx = document.getElementById('revenueDistributionChart').getContext('2d');
-    new Chart(revenueDistributionCtx, {
-        type: 'pie',
-        data: {
-            labels: ['Asia', 'North America', 'Europe', 'Rest of the World'],
-            datasets: [{
-                data: [revenueDistributionData.asia, revenueDistributionData.north_america, revenueDistributionData.europe, revenueDistributionData.rest_of_the_world],
-                backgroundColor: [colors.asia, colors.north_america, colors.europe, colors.rest_of_the_world]
-            }]
-        },
-        options: chartOptions
-    });
-    document.getElementById('revenueDistributionDescription').innerText = revenueDistributionData.description;
+    document.getElementById('gdpDescription').innerText = gdpData.description;
 
     // Render Export Contribution Chart
-    const exportContributionData = data.global_semiconductor_market.export_contribution;
-    const exportContributionCtx = document.getElementById('exportContributionChart').getContext('2d');
-    new Chart(exportContributionCtx, {
+    const exportData = data.russia_economy_dependence_on_oil.export_contribution;
+    const exportCtx = document.getElementById('exportChart').getContext('2d');
+    new Chart(exportCtx, {
         type: 'pie',
         data: {
-            labels: ['High Tech', 'Mid Tech', 'Low Tech'],
+            labels: ['Oil Exports', 'Gas Exports', 'Other'],
             datasets: [{
-                data: [exportContributionData.high_tech, exportContributionData.mid_tech, exportContributionData.low_tech],
-                backgroundColor: [colors.high_tech, colors.mid_tech, colors.low_tech]
+                data: [exportData.oil_exports, exportData.gas_exports, exportData.other],
+                backgroundColor: [colors.oil, colors.gas, colors.other]
             }]
         },
         options: chartOptions
     });
-    document.getElementById('exportContributionDescription').innerText = exportContributionData.description;
+    document.getElementById('exportDescription').innerText = exportData.description;
+
+    // Render Government Revenue Chart
+    const governmentRevenueData = data.russia_economy_dependence_on_oil.government_revenue;
+    const governmentRevenueCtx = document.getElementById('governmentRevenueChart').getContext('2d');
+    new Chart(governmentRevenueCtx, {
+        type: 'pie',
+        data: {
+            labels: ['Oil Revenue', 'Gas Revenue', 'Other'],
+            datasets: [{
+                data: [governmentRevenueData.oil_revenue, governmentRevenueData.gas_revenue, governmentRevenueData.other],
+                backgroundColor: [colors.oil, colors.gas, colors.other]
+            }]
+        },
+        options: chartOptions
+    });
+    document.getElementById('governmentRevenueDescription').innerText = governmentRevenueData.description;
 
     // Render Employment Impact Chart
-    const employmentImpactData = data.global_semiconductor_market.employment_impact;
+    const employmentImpactData = data.russia_economy_dependence_on_oil.employment_impact;
     const employmentImpactCtx = document.getElementById('employmentImpactChart').getContext('2d');
     new Chart(employmentImpactCtx, {
         type: 'pie',
         data: {
-            labels: ['Direct', 'Indirect', 'Supporting'],
+            labels: ['Direct Oil', 'Indirect Oil', 'Other'],
             datasets: [{
-                data: [employmentImpactData.direct, employmentImpactData.indirect, employmentImpactData.supporting],
-                backgroundColor: [colors.direct, colors.indirect, colors.supporting]
+                data: [employmentImpactData.direct_oil, employmentImpactData.indirect_oil, employmentImpactData.other],
+                backgroundColor: [colors.direct_oil, colors.indirect_oil, colors.other]
             }]
         },
         options: chartOptions
     });
     document.getElementById('employmentImpactDescription').innerText = employmentImpactData.description;
 
-    // Render Research and Development Chart
-    const researchDevelopmentData = data.global_semiconductor_market.research_development;
-    const researchDevelopmentCtx = document.getElementById('researchDevelopmentChart').getContext('2d');
-    new Chart(researchDevelopmentCtx, {
+    // Render Global Market Share Chart
+    const globalMarketShareData = data.russia_economy_dependence_on_oil.global_market_share;
+    const globalMarketShareCtx = document.getElementById('globalMarketShareChart').getContext('2d');
+    new Chart(globalMarketShareCtx, {
         type: 'pie',
         data: {
-            labels: ['Semiconductors', 'Other'],
+            labels: ['Oil', 'Gas', 'Other'],
             datasets: [{
-                data: [researchDevelopmentData.semiconductors, researchDevelopmentData.other],
-                backgroundColor: [colors.high_tech, colors.others]
+                data: [globalMarketShareData.oil, globalMarketShareData.gas, globalMarketShareData.other],
+                backgroundColor: [colors.oil, colors.gas, colors.other]
             }]
         },
         options: chartOptions
     });
-    document.getElementById('researchDevelopmentDescription').innerText = researchDevelopmentData.description;
+    document.getElementById('globalMarketShareDescription').innerText = globalMarketShareData.description;
 
-    // Render Future Growth Chart
-    const futureGrowthData = data.global_semiconductor_market.future_growth;
-    const futureGrowthCtx = document.getElementById('futureGrowthChart').getContext('2d');
-    new Chart(futureGrowthCtx, {
+    // Render Investment Chart
+    const investmentData = data.russia_economy_dependence_on_oil.investment;
+    const investmentCtx = document.getElementById('investmentChart').getContext('2d');
+    new Chart(investmentCtx, {
         type: 'pie',
         data: {
-            labels: ['Asia', 'North America', 'Europe', 'Rest of the World'],
+            labels: ['Oil Sector', 'Gas Sector', 'Non-Oil/Gas Sector'],
             datasets: [{
-                data: [futureGrowthData.asia, futureGrowthData.north_america, futureGrowthData.europe, futureGrowthData.rest_of_the_world],
-                backgroundColor: [colors.asia, colors.north_america, colors.europe, colors.rest_of_the_world]
+                data: [investmentData.oil_sector, investmentData.gas_sector, investmentData.non_oil_gas_sector],
+                backgroundColor: [colors.oil, colors.gas, colors.non_oil_gas_sector]
             }]
         },
         options: chartOptions
     });
-    document.getElementById('futureGrowthDescription').innerText = futureGrowthData.description;
+    document.getElementById('investmentDescription').innerText = investmentData.description;
+
+    // Render Energy Production Chart
+    const energyProductionData = data.russia_economy_dependence_on_oil.energy_production;
+    const energyProductionCtx = document.getElementById('energyProductionChart').getContext('2d');
+    new Chart(energyProductionCtx, {
+        type: 'pie',
+        data: {
+            labels: ['Oil', 'Gas', 'Renewable'],
+            datasets: [{
+                data: [energyProductionData.oil, energyProductionData.gas, energyProductionData.renewable],
+                backgroundColor: [colors.oil, colors.gas, colors.renewable]
+            }]
+        },
+        options: chartOptions
+    });
+    document.getElementById('energyProductionDescription').innerText = energyProductionData.description;
+
+    // Render Sector Impact Chart
+    const sectorImpactData = data.russia_economy_dependence_on_oil.sector_impact;
+    const sectorImpactCtx = document.getElementById('sectorImpactChart').getContext('2d');
+    new Chart(sectorImpactCtx, {
+        type: 'pie',
+        data: {
+            labels: ['Oil Sector', 'Gas Sector', 'Other Sectors'],
+            datasets: [{
+                data: [sectorImpactData.oil_sector, sectorImpactData.gas_sector, sectorImpactData.other_sectors],
+                backgroundColor: [colors.oil, colors.gas, colors.other_sectors]
+            }]
+        },
+        options: chartOptions
+    });
+    document.getElementById('sectorImpactDescription').innerText = sectorImpactData.description;
 
     // Render Sources List
     const sourcesList = document.getElementById('sourcesList');
