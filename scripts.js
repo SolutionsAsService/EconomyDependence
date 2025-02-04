@@ -1,69 +1,84 @@
 // scripts.js
 document.addEventListener('DOMContentLoaded', () => {
     const data = {
-        "russia_economy_dependence_on_oil": {
+        "israel_economy": {
             "gdp_contribution": {
-                "oil_and_gas": 30,
-                "other": 70,
-                "description": "Oil and gas account for approximately 30% of Russia's gross domestic product (GDP)."
+                "high_tech": 15,
+                "services": 25,
+                "manufacturing": 20,
+                "agriculture": 2,
+                "other": 38,
+                "description": "Distribution of GDP contribution by sector in Israel."
             },
             "export_contribution": {
-                "oil_exports": 52,
-                "gas_exports": 16,
-                "other": 32,
-                "description": "Oil and gas exports comprise a significant portion of Russia's total exports."
+                "high_tech": 40,
+                "diamonds": 20,
+                "chemicals": 10,
+                "machinery": 10,
+                "other": 20,
+                "description": "Export contribution by sector in Israel."
             },
-            "government_revenue": {
-                "oil_revenue": 45,
-                "gas_revenue": 15,
+            "import_contribution": {
+                "raw_materials": 30,
+                "consumer_goods": 25,
+                "machinery_equipment": 20,
+                "chemicals": 15,
+                "other": 10,
+                "description": "Import contribution by sector in Israel."
+            },
+            "sector_contribution": {
+                "high_tech": 20,
+                "defense": 15,
+                "tourism": 10,
+                "real_estate": 15,
                 "other": 40,
-                "description": "Oil and gas revenues constitute a major part of the Russian government's revenue."
+                "description": "Sector contribution to Israel's economy."
             },
-            "employment_impact": {
-                "direct_oil": 10,
-                "indirect_oil": 20,
-                "other": 70,
-                "description": "The oil sector directly and indirectly impacts a significant portion of employment in Russia."
+            "employment_distribution": {
+                "high_tech": 15,
+                "services": 30,
+                "manufacturing": 20,
+                "agriculture": 5,
+                "other": 30,
+                "description": "Employment distribution by sector in Israel."
             },
-            "global_market_share": {
-                "oil": 12,
-                "gas": 17,
-                "other": 71,
-                "description": "Russia holds a substantial share of the global oil and gas market."
+            "investment_distribution": {
+                "high_tech": 35,
+                "real_estate": 25,
+                "infrastructure": 20,
+                "education": 10,
+                "other": 10,
+                "description": "Investment distribution by sector in Israel."
             },
-            "investment": {
-                "oil_sector": 40,
-                "gas_sector": 20,
-                "non_oil_gas_sector": 40,
-                "description": "Investment in the oil and gas sector is substantial compared to other sectors."
+            "innovation_index": {
+                "high_tech": 50,
+                "academia": 20,
+                "private_research": 20,
+                "government_initiatives": 10,
+                "description": "Innovation index distribution in Israel."
             },
-            "energy_production": {
-                "oil": 50,
-                "gas": 30,
-                "renewable": 20,
-                "description": "Oil dominates Russia's energy production, with significant contributions from gas and renewable sources."
-            },
-            "sector_impact": {
-                "oil_sector": 40,
-                "gas_sector": 20,
-                "other_sectors": 40,
-                "description": "The oil and gas sectors have a balanced impact compared to other sectors in the economy."
+            "tourism_revenue": {
+                "religious": 40,
+                "leisure": 30,
+                "business": 20,
+                "other": 10,
+                "description": "Tourism revenue distribution by type in Israel."
             }
         },
         "sources": [
             {
-                "title": "Russia's Economic Outlook",
-                "url": "https://example.com/russias-economic-outlook",
+                "title": "Israel's Economic Overview",
+                "url": "https://example.com/israels-economic-overview",
                 "accessed_date": "2025-02-01"
             },
             {
-                "title": "The Role of Oil and Gas in Russia's Economy",
-                "url": "https://example.com/role-of-oil-gas-in-russia-economy",
+                "title": "Key Sectors in Israel's Economy",
+                "url": "https://example.com/key-sectors-in-israels-economy",
                 "accessed_date": "2025-02-01"
             },
             {
-                "title": "Gazprom",
-                "url": "https://en.wikipedia.org/wiki/Gazprom",
+                "title": "Innovation in Israel",
+                "url": "https://en.wikipedia.org/wiki/Innovation_in_Israel",
                 "accessed_date": "2025-02-01"
             }
         ]
@@ -90,26 +105,39 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     const colors = {
-        oil: '#FF4136',
-        gas: '#0074D9',
-        other: '#2ECC40',
-        direct_oil: '#FF851B',
-        indirect_oil: '#B10DC9',
-        renewable: '#7FDBFF',
-        non_oil_gas_sector: '#AAAAAA',
-        other_sectors: '#3D9970'
+        high_tech: '#FF4136',
+        services: '#0074D9',
+        manufacturing: '#2ECC40',
+        agriculture: '#FFDC00',
+        other: '#AAAAAA',
+        diamonds: '#B10DC9',
+        chemicals: '#FF851B',
+        machinery: '#7FDBFF',
+        raw_materials: '#3D9970',
+        consumer_goods: '#39CCCC',
+        defense: '#85144b',
+        tourism: '#FF4136',
+        real_estate: '#FF851B',
+        infrastructure: '#7FDBFF',
+        education: '#B10DC9',
+        academia: '#0074D9',
+        private_research: '#2ECC40',
+        government_initiatives: '#FFDC00',
+        religious: '#FF4136',
+        leisure: '#0074D9',
+        business: '#2ECC40'
     };
 
     // Render GDP Contribution Chart
-    const gdpData = data.russia_economy_dependence_on_oil.gdp_contribution;
+    const gdpData = data.israel_economy.gdp_contribution;
     const gdpCtx = document.getElementById('gdpChart').getContext('2d');
     new Chart(gdpCtx, {
         type: 'pie',
         data: {
-            labels: ['Oil and Gas', 'Other'],
+            labels: ['High Tech', 'Services', 'Manufacturing', 'Agriculture', 'Other'],
             datasets: [{
-                data: [gdpData.oil_and_gas, gdpData.other],
-                backgroundColor: [colors.oil, colors.other]
+                data: [gdpData.high_tech, gdpData.services, gdpData.manufacturing, gdpData.agriculture, gdpData.other],
+                backgroundColor: [colors.high_tech, colors.services, colors.manufacturing, colors.agriculture, colors.other]
             }]
         },
         options: chartOptions
@@ -117,116 +145,116 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('gdpDescription').innerText = gdpData.description;
 
     // Render Export Contribution Chart
-    const exportData = data.russia_economy_dependence_on_oil.export_contribution;
+    const exportData = data.israel_economy.export_contribution;
     const exportCtx = document.getElementById('exportChart').getContext('2d');
     new Chart(exportCtx, {
         type: 'pie',
         data: {
-            labels: ['Oil Exports', 'Gas Exports', 'Other'],
+            labels: ['High Tech', 'Diamonds', 'Chemicals', 'Machinery', 'Other'],
             datasets: [{
-                data: [exportData.oil_exports, exportData.gas_exports, exportData.other],
-                backgroundColor: [colors.oil, colors.gas, colors.other]
+                data: [exportData.high_tech, exportData.diamonds, exportData.chemicals, exportData.machinery, exportData.other],
+                backgroundColor: [colors.high_tech, colors.diamonds, colors.chemicals, colors.machinery, colors.other]
             }]
         },
         options: chartOptions
     });
     document.getElementById('exportDescription').innerText = exportData.description;
 
-    // Render Government Revenue Chart
-    const governmentRevenueData = data.russia_economy_dependence_on_oil.government_revenue;
-    const governmentRevenueCtx = document.getElementById('governmentRevenueChart').getContext('2d');
-    new Chart(governmentRevenueCtx, {
+    // Render Import Contribution Chart
+    const importData = data.israel_economy.import_contribution;
+    const importCtx = document.getElementById('importChart').getContext('2d');
+    new Chart(importCtx, {
         type: 'pie',
         data: {
-            labels: ['Oil Revenue', 'Gas Revenue', 'Other'],
+            labels: ['Raw Materials', 'Consumer Goods', 'Machinery & Equipment', 'Chemicals', 'Other'],
             datasets: [{
-                data: [governmentRevenueData.oil_revenue, governmentRevenueData.gas_revenue, governmentRevenueData.other],
-                backgroundColor: [colors.oil, colors.gas, colors.other]
+                data: [importData.raw_materials, importData.consumer_goods, importData.machinery_equipment, importData.chemicals, importData.other],
+                backgroundColor: [colors.raw_materials, colors.consumer_goods, colors.machinery, colors.chemicals, colors.other]
             }]
         },
         options: chartOptions
     });
-    document.getElementById('governmentRevenueDescription').innerText = governmentRevenueData.description;
+    document.getElementById('importDescription').innerText = importData.description;
 
-    // Render Employment Impact Chart
-    const employmentImpactData = data.russia_economy_dependence_on_oil.employment_impact;
-    const employmentImpactCtx = document.getElementById('employmentImpactChart').getContext('2d');
-    new Chart(employmentImpactCtx, {
+    // Render Sector Contribution Chart
+    const sectorContributionData = data.israel_economy.sector_contribution;
+    const sectorContributionCtx = document.getElementById('sectorContributionChart').getContext('2d');
+    new Chart(sectorContributionCtx, {
         type: 'pie',
         data: {
-            labels: ['Direct Oil', 'Indirect Oil', 'Other'],
+            labels: ['High Tech', 'Defense', 'Tourism', 'Real Estate', 'Other'],
             datasets: [{
-                data: [employmentImpactData.direct_oil, employmentImpactData.indirect_oil, employmentImpactData.other],
-                backgroundColor: [colors.direct_oil, colors.indirect_oil, colors.other]
+                data: [sectorContributionData.high_tech, sectorContributionData.defense, sectorContributionData.tourism, sectorContributionData.real_estate, sectorContributionData.other],
+                backgroundColor: [colors.high_tech, colors.defense, colors.tourism, colors.real_estate, colors.other]
             }]
         },
         options: chartOptions
     });
-    document.getElementById('employmentImpactDescription').innerText = employmentImpactData.description;
+    document.getElementById('sectorContributionDescription').innerText = sectorContributionData.description;
 
-    // Render Global Market Share Chart
-    const globalMarketShareData = data.russia_economy_dependence_on_oil.global_market_share;
-    const globalMarketShareCtx = document.getElementById('globalMarketShareChart').getContext('2d');
-    new Chart(globalMarketShareCtx, {
+    // Render Employment Distribution Chart
+    const employmentData = data.israel_economy.employment_distribution;
+    const employmentCtx = document.getElementById('employmentChart').getContext('2d');
+    new Chart(employmentCtx, {
         type: 'pie',
         data: {
-            labels: ['Oil', 'Gas', 'Other'],
+            labels: ['High Tech', 'Services', 'Manufacturing', 'Agriculture', 'Other'],
             datasets: [{
-                data: [globalMarketShareData.oil, globalMarketShareData.gas, globalMarketShareData.other],
-                backgroundColor: [colors.oil, colors.gas, colors.other]
+                data: [employmentData.high_tech, employmentData.services, employmentData.manufacturing, employmentData.agriculture, employmentData.other],
+                backgroundColor: [colors.high_tech, colors.services, colors.manufacturing, colors.agriculture, colors.other]
             }]
         },
         options: chartOptions
     });
-    document.getElementById('globalMarketShareDescription').innerText = globalMarketShareData.description;
+    document.getElementById('employmentDescription').innerText = employmentData.description;
 
-    // Render Investment Chart
-    const investmentData = data.russia_economy_dependence_on_oil.investment;
+    // Render Investment Distribution Chart
+    const investmentData = data.israel_economy.investment_distribution;
     const investmentCtx = document.getElementById('investmentChart').getContext('2d');
     new Chart(investmentCtx, {
         type: 'pie',
         data: {
-            labels: ['Oil Sector', 'Gas Sector', 'Non-Oil/Gas Sector'],
+            labels: ['High Tech', 'Real Estate', 'Infrastructure', 'Education', 'Other'],
             datasets: [{
-                data: [investmentData.oil_sector, investmentData.gas_sector, investmentData.non_oil_gas_sector],
-                backgroundColor: [colors.oil, colors.gas, colors.non_oil_gas_sector]
+                data: [investmentData.high_tech, investmentData.real_estate, investmentData.infrastructure, investmentData.education, investmentData.other],
+                backgroundColor: [colors.high_tech, colors.real_estate, colors.infrastructure, colors.education, colors.other]
             }]
         },
         options: chartOptions
     });
     document.getElementById('investmentDescription').innerText = investmentData.description;
 
-    // Render Energy Production Chart
-    const energyProductionData = data.russia_economy_dependence_on_oil.energy_production;
-    const energyProductionCtx = document.getElementById('energyProductionChart').getContext('2d');
-    new Chart(energyProductionCtx, {
+    // Render Innovation Index Chart
+    const innovationData = data.israel_economy.innovation_index;
+    const innovationCtx = document.getElementById('innovationChart').getContext('2d');
+    new Chart(innovationCtx, {
         type: 'pie',
         data: {
-            labels: ['Oil', 'Gas', 'Renewable'],
+            labels: ['High Tech', 'Academia', 'Private Research', 'Government Initiatives'],
             datasets: [{
-                data: [energyProductionData.oil, energyProductionData.gas, energyProductionData.renewable],
-                backgroundColor: [colors.oil, colors.gas, colors.renewable]
+                data: [innovationData.high_tech, innovationData.academia, innovationData.private_research, innovationData.government_initiatives],
+                backgroundColor: [colors.high_tech, colors.academia, colors.private_research, colors.government_initiatives]
             }]
         },
         options: chartOptions
     });
-    document.getElementById('energyProductionDescription').innerText = energyProductionData.description;
+    document.getElementById('innovationDescription').innerText = innovationData.description;
 
-    // Render Sector Impact Chart
-    const sectorImpactData = data.russia_economy_dependence_on_oil.sector_impact;
-    const sectorImpactCtx = document.getElementById('sectorImpactChart').getContext('2d');
-    new Chart(sectorImpactCtx, {
+    // Render Tourism Revenue Chart
+    const tourismRevenueData = data.israel_economy.tourism_revenue;
+    const tourismRevenueCtx = document.getElementById('tourismRevenueChart').getContext('2d');
+    new Chart(tourismRevenueCtx, {
         type: 'pie',
         data: {
-            labels: ['Oil Sector', 'Gas Sector', 'Other Sectors'],
+            labels: ['Religious', 'Leisure', 'Business', 'Other'],
             datasets: [{
-                data: [sectorImpactData.oil_sector, sectorImpactData.gas_sector, sectorImpactData.other_sectors],
-                backgroundColor: [colors.oil, colors.gas, colors.other_sectors]
+                data: [tourismRevenueData.religious, tourismRevenueData.leisure, tourismRevenueData.business, tourismRevenueData.other],
+                backgroundColor: [colors.religious, colors.leisure, colors.business, colors.other]
             }]
         },
         options: chartOptions
     });
-    document.getElementById('sectorImpactDescription').innerText = sectorImpactData.description;
+    document.getElementById('tourismRevenueDescription').innerText = tourismRevenueData.description;
 
     // Render Sources List
     const sourcesList = document.getElementById('sourcesList');
