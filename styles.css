@@ -9,7 +9,7 @@ body {
 }
 
 header {
-    background: #006699;
+    background: #004d40;
     color: #fff;
     padding: 1rem 0;
     text-align: center;
@@ -51,7 +51,7 @@ canvas {
 .chart-container p {
     margin: 1rem 0 0;
     padding: 0;
-    font-size: 0.9rem;
+    font-size: 1rem;
     color: #666;
 }
 
@@ -74,7 +74,7 @@ canvas {
 }
 
 .sources-section ul li a {
-    color: #006699;
+    color: #004d40;
     text-decoration: none;
 }
 
