@@ -1,66 +1,80 @@
 // scripts.js
 document.addEventListener('DOMContentLoaded', () => {
     const data = {
-        "taiwan_economy_dependence_on_semiconductors": {
-            "gdp_contribution": {
-                "semiconductors": 25,
-                "other": 75,
-                "description": "Integrated circuits (ICs) account for approximately 25% of Taiwan's gross domestic product (GDP)."
+        "global_semiconductor_market": {
+            "country_manufacturing_share": {
+                "china": 24,
+                "taiwan": 21,
+                "south_korea": 19,
+                "usa": 13,
+                "japan": 10,
+                "europe": 9,
+                "others": 4,
+                "description": "Country-wise semiconductor manufacturing shares in the global market."
+            },
+            "company_market_share": {
+                "tsmc": 54,
+                "samsung": 19,
+                "intel": 10,
+                "others": 17,
+                "description": "Market share of major semiconductor manufacturing companies."
+            },
+            "semiconductor_type": {
+                "memory": 33,
+                "logic": 25,
+                "analog": 12,
+                "discrete": 5,
+                "optical": 15,
+                "sensor": 5,
+                "other": 5,
+                "description": "Distribution of semiconductor types in the global market."
+            },
+            "revenue_distribution": {
+                "asia": 60,
+                "north_america": 20,
+                "europe": 15,
+                "rest_of_the_world": 5,
+                "description": "Global revenue distribution of semiconductor sales."
             },
             "export_contribution": {
-                "semiconductors": 41.5,
-                "other": 58.5,
-                "description": "ICs comprise 41.5% of all Taiwanese exports."
-            },
-            "tsmc_specific_contribution": {
-                "market_share": 54,
-                "other": 46,
-                "description": "Taiwan Semiconductor Manufacturing Company (TSMC) controls 54% of the global semiconductor market."
-            },
-            "stock_market_impact": {
-                "tsmc": 30,
-                "other": 70,
-                "description": "TSMC constitutes about 30% of the Taiwan Stock Exchange's main index."
+                "high_tech": 65,
+                "mid_tech": 25,
+                "low_tech": 10,
+                "description": "Contribution of semiconductors to global export levels."
             },
             "employment_impact": {
-                "direct": 15,
-                "indirect": 10,
-                "other": 75,
-                "description": "The semiconductor sector directly and indirectly impacts 25% of employment in Taiwan."
+                "direct": 20,
+                "indirect": 30,
+                "supporting": 50,
+                "description": "Impact of the semiconductor industry on global employment."
             },
             "research_development": {
-                "semiconductors": 40,
-                "other": 60,
-                "description": "A significant portion of research and development spending goes towards semiconductors."
-            },
-            "global_export_share": {
-                "semiconductors": 30,
-                "other": 70,
-                "description": "Taiwan holds a substantial share of the global semiconductor export market."
-            },
-            "sector_diversification": {
                 "semiconductors": 35,
-                "electronics": 20,
-                "machinery": 15,
-                "chemicals": 10,
-                "other": 20,
-                "description": "Taiwan's economy is diversified across several sectors with semiconductors being the leading sector."
+                "other": 65,
+                "description": "Share of research and development spending on semiconductors."
+            },
+            "future_growth": {
+                "asia": 50,
+                "north_america": 20,
+                "europe": 20,
+                "rest_of_the_world": 10,
+                "description": "Predicted future growth of the semiconductor market by region."
             }
         },
         "sources": [
             {
-                "title": "From Chips to Beyond: Taiwan's Need for Economic Diversification",
-                "url": "https://growthlab.hks.harvard.edu/blog/chips-beyond-taiwan%E2%80%99s-need-economic-diversification",
+                "title": "Global Semiconductor Market Report 2025",
+                "url": "https://example.com/global-semiconductor-market-report-2025",
                 "accessed_date": "2025-02-01"
             },
             {
-                "title": "Taiwan's Economy and the Big Chip on its Shoulder",
-                "url": "https://www.rajraf.org/article/taiwans-economy-and-the-big-chip-on-its-shoulder-/1035",
+                "title": "Semiconductor Manufacturing and its Impact",
+                "url": "https://example.com/semiconductor-manufacturing-impact",
                 "accessed_date": "2025-02-01"
             },
             {
-                "title": "TSMC",
-                "url": "https://en.wikipedia.org/wiki/TSMC",
+                "title": "Top Semiconductor Companies",
+                "url": "https://en.wikipedia.org/wiki/List_of_largest_semiconductor_companies",
                 "accessed_date": "2025-02-01"
             }
         ]
@@ -87,90 +101,124 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     const colors = {
-        red: '#FF4136',    // ROC Red
-        blue: '#0074D9',   // ROC Blue
-        white: '#DDDDDD',  // White
-        green: '#2ECC40',
-        yellow: '#FFDC00',
-        purple: '#B10DC9',
-        orange: '#FF851B',
-        cyan: '#7FDBFF'
+        china: '#FF4136',
+        taiwan: '#0074D9',
+        south_korea: '#2ECC40',
+        usa: '#FFDC00',
+        japan: '#B10DC9',
+        europe: '#FF851B',
+        others: '#AAAAAA',
+        tsmc: '#001f3f',
+        samsung: '#0074D9',
+        intel: '#3D9970',
+        memory: '#FF4136',
+        logic: '#0074D9',
+        analog: '#2ECC40',
+        discrete: '#FFDC00',
+        optical: '#B10DC9',
+        sensor: '#FF851B',
+        asia: '#7FDBFF',
+        north_america: '#39CCCC',
+        europe: '#3D9970',
+        rest_of_the_world: '#AAAAAA',
+        high_tech: '#FF4136',
+        mid_tech: '#0074D9',
+        low_tech: '#2ECC40',
+        direct: '#FF851B',
+        indirect: '#B10DC9',
+        supporting: '#AAAAAA'
     };
 
-    // Render GDP Contribution Chart
-    const gdpData = data.taiwan_economy_dependence_on_semiconductors.gdp_contribution;
-    const gdpCtx = document.getElementById('gdpChart').getContext('2d');
-    new Chart(gdpCtx, {
-        type: 'doughnut',
+    // Render Country Manufacturing Share Chart
+    const countryManufacturingShareData = data.global_semiconductor_market.country_manufacturing_share;
+    const countryManufacturingShareCtx = document.getElementById('countryManufacturingShareChart').getContext('2d');
+    new Chart(countryManufacturingShareCtx, {
+        type: 'pie',
         data: {
-            labels: ['Semiconductors', 'Other'],
+            labels: ['China', 'Taiwan', 'South Korea', 'USA', 'Japan', 'Europe', 'Others'],
             datasets: [{
-                data: [gdpData.semiconductors, gdpData.other],
-                backgroundColor: [colors.red, colors.blue]
+                data: [countryManufacturingShareData.china, countryManufacturingShareData.taiwan, countryManufacturingShareData.south_korea, countryManufacturingShareData.usa, countryManufacturingShareData.japan, countryManufacturingShareData.europe, countryManufacturingShareData.others],
+                backgroundColor: [colors.china, colors.taiwan, colors.south_korea, colors.usa, colors.japan, colors.europe, colors.others]
             }]
         },
         options: chartOptions
     });
-    document.getElementById('gdpDescription').innerText = gdpData.description;
+    document.getElementById('countryManufacturingShareDescription').innerText = countryManufacturingShareData.description;
+
+    // Render Company Market Share Chart
+    const companyMarketShareData = data.global_semiconductor_market.company_market_share;
+    const companyMarketShareCtx = document.getElementById('companyMarketShareChart').getContext('2d');
+    new Chart(companyMarketShareCtx, {
+        type: 'pie',
+        data: {
+            labels: ['TSMC', 'Samsung', 'Intel', 'Others'],
+            datasets: [{
+                data: [companyMarketShareData.tsmc, companyMarketShareData.samsung, companyMarketShareData.intel, companyMarketShareData.others],
+                backgroundColor: [colors.tsmc, colors.samsung, colors.intel, colors.others]
+            }]
+        },
+        options: chartOptions
+    });
+    document.getElementById('companyMarketShareDescription').innerText = companyMarketShareData.description;
+
+    // Render Semiconductor Type Chart
+    const semiconductorTypeData = data.global_semiconductor_market.semiconductor_type;
+    const semiconductorTypeCtx = document.getElementById('semiconductorTypeChart').getContext('2d');
+    new Chart(semiconductorTypeCtx, {
+        type: 'pie',
+        data: {
+            labels: ['Memory', 'Logic', 'Analog', 'Discrete', 'Optical', 'Sensor', 'Other'],
+            datasets: [{
+                data: [semiconductorTypeData.memory, semiconductorTypeData.logic, semiconductorTypeData.analog, semiconductorTypeData.discrete, semiconductorTypeData.optical, semiconductorTypeData.sensor, semiconductorTypeData.other],
+                backgroundColor: [colors.memory, colors.logic, colors.analog, colors.discrete, colors.optical, colors.sensor, colors.others]
+            }]
+        },
+        options: chartOptions
+    });
+    document.getElementById('semiconductorTypeDescription').innerText = semiconductorTypeData.description;
+
+    // Render Revenue Distribution Chart
+    const revenueDistributionData = data.global_semiconductor_market.revenue_distribution;
+    const revenueDistributionCtx = document.getElementById('revenueDistributionChart').getContext('2d');
+    new Chart(revenueDistributionCtx, {
+        type: 'pie',
+        data: {
+            labels: ['Asia', 'North America', 'Europe', 'Rest of the World'],
+            datasets: [{
+                data: [revenueDistributionData.asia, revenueDistributionData.north_america, revenueDistributionData.europe, revenueDistributionData.rest_of_the_world],
+                backgroundColor: [colors.asia, colors.north_america, colors.europe, colors.rest_of_the_world]
+            }]
+        },
+        options: chartOptions
+    });
+    document.getElementById('revenueDistributionDescription').innerText = revenueDistributionData.description;
 
     // Render Export Contribution Chart
-    const exportData = data.taiwan_economy_dependence_on_semiconductors.export_contribution;
-    const exportCtx = document.getElementById('exportChart').getContext('2d');
-    new Chart(exportCtx, {
-        type: 'doughnut',
+    const exportContributionData = data.global_semiconductor_market.export_contribution;
+    const exportContributionCtx = document.getElementById('exportContributionChart').getContext('2d');
+    new Chart(exportContributionCtx, {
+        type: 'pie',
         data: {
-            labels: ['Semiconductors', 'Other'],
+            labels: ['High Tech', 'Mid Tech', 'Low Tech'],
             datasets: [{
-                data: [exportData.semiconductors, exportData.other],
-                backgroundColor: [colors.red, colors.blue]
+                data: [exportContributionData.high_tech, exportContributionData.mid_tech, exportContributionData.low_tech],
+                backgroundColor: [colors.high_tech, colors.mid_tech, colors.low_tech]
             }]
         },
         options: chartOptions
     });
-    document.getElementById('exportDescription').innerText = exportData.description;
-
-    // Render TSMC Market Share Chart
-    const marketShareData = data.taiwan_economy_dependence_on_semiconductors.tsmc_specific_contribution;
-    const marketShareCtx = document.getElementById('tsmcMarketShareChart').getContext('2d');
-    new Chart(marketShareCtx, {
-        type: 'doughnut',
-        data: {
-            labels: ['TSMC Market Share', 'Other'],
-            datasets: [{
-                data: [marketShareData.market_share, marketShareData.other],
-                backgroundColor: [colors.red, colors.blue]
-            }]
-        },
-        options: chartOptions
-    });
-    document.getElementById('tsmcMarketShareDescription').innerText = marketShareData.description;
-
-    // Render TSMC Stock Market Impact Chart
-    const stockMarketImpactData = data.taiwan_economy_dependence_on_semiconductors.stock_market_impact;
-    const stockMarketImpactCtx = document.getElementById('tsmcStockMarketImpactChart').getContext('2d');
-    new Chart(stockMarketImpactCtx, {
-        type: 'doughnut',
-        data: {
-            labels: ['TSMC', 'Other'],
-            datasets: [{
-                data: [stockMarketImpactData.tsmc, stockMarketImpactData.other],
-                backgroundColor: [colors.red, colors.blue]
-            }]
-        },
-        options: chartOptions
-    });
-    document.getElementById('tsmcStockMarketImpactDescription').innerText = stockMarketImpactData.description;
+    document.getElementById('exportContributionDescription').innerText = exportContributionData.description;
 
     // Render Employment Impact Chart
-    const employmentImpactData = data.taiwan_economy_dependence_on_semiconductors.employment_impact;
+    const employmentImpactData = data.global_semiconductor_market.employment_impact;
     const employmentImpactCtx = document.getElementById('employmentImpactChart').getContext('2d');
     new Chart(employmentImpactCtx, {
-        type: 'doughnut',
+        type: 'pie',
         data: {
-            labels: ['Direct', 'Indirect', 'Other'],
+            labels: ['Direct', 'Indirect', 'Supporting'],
             datasets: [{
-                data: [employmentImpactData.direct, employmentImpactData.indirect, employmentImpactData.other],
-                backgroundColor: [colors.red, colors.blue, colors.white]
+                data: [employmentImpactData.direct, employmentImpactData.indirect, employmentImpactData.supporting],
+                backgroundColor: [colors.direct, colors.indirect, colors.supporting]
             }]
         },
         options: chartOptions
@@ -178,52 +226,36 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('employmentImpactDescription').innerText = employmentImpactData.description;
 
     // Render Research and Development Chart
-    const researchDevelopmentData = data.taiwan_economy_dependence_on_semiconductors.research_development;
+    const researchDevelopmentData = data.global_semiconductor_market.research_development;
     const researchDevelopmentCtx = document.getElementById('researchDevelopmentChart').getContext('2d');
     new Chart(researchDevelopmentCtx, {
-        type: 'doughnut',
+        type: 'pie',
         data: {
             labels: ['Semiconductors', 'Other'],
             datasets: [{
                 data: [researchDevelopmentData.semiconductors, researchDevelopmentData.other],
-                backgroundColor: [colors.red, colors.blue]
+                backgroundColor: [colors.high_tech, colors.others]
             }]
         },
         options: chartOptions
     });
     document.getElementById('researchDevelopmentDescription').innerText = researchDevelopmentData.description;
 
-    // Render Global Export Share Chart
-    const globalExportShareData = data.taiwan_economy_dependence_on_semiconductors.global_export_share;
-    const globalExportShareCtx = document.getElementById('globalExportShareChart').getContext('2d');
-    new Chart(globalExportShareCtx, {
-        type: 'doughnut',
+    // Render Future Growth Chart
+    const futureGrowthData = data.global_semiconductor_market.future_growth;
+    const futureGrowthCtx = document.getElementById('futureGrowthChart').getContext('2d');
+    new Chart(futureGrowthCtx, {
+        type: 'pie',
         data: {
-            labels: ['Semiconductors', 'Other'],
+            labels: ['Asia', 'North America', 'Europe', 'Rest of the World'],
             datasets: [{
-                data: [globalExportShareData.semiconductors, globalExportShareData.other],
-                backgroundColor: [colors.red, colors.blue]
+                data: [futureGrowthData.asia, futureGrowthData.north_america, futureGrowthData.europe, futureGrowthData.rest_of_the_world],
+                backgroundColor: [colors.asia, colors.north_america, colors.europe, colors.rest_of_the_world]
             }]
         },
         options: chartOptions
     });
-    document.getElementById('globalExportShareDescription').innerText = globalExportShareData.description;
-
-    // Render Sector Diversification Chart
-    const sectorDiversificationData = data.taiwan_economy_dependence_on_semiconductors.sector_diversification;
-    const sectorDiversificationCtx = document.getElementById('sectorDiversificationChart').getContext('2d');
-    new Chart(sectorDiversificationCtx, {
-        type: 'doughnut',
-        data: {
-            labels: ['Semiconductors', 'Electronics', 'Machinery', 'Chemicals', 'Other'],
-            datasets: [{
-                data: [sectorDiversificationData.semiconductors, sectorDiversificationData.electronics, sectorDiversificationData.machinery, sectorDiversificationData.chemicals, sectorDiversificationData.other],
-                backgroundColor: [colors.red, colors.blue, colors.green, colors.yellow, colors.purple]
-            }]
-        },
-        options: chartOptions
-    });
-    document.getElementById('sectorDiversificationDescription').innerText = sectorDiversificationData.description;
+    document.getElementById('futureGrowthDescription').innerText = futureGrowthData.description;
 
     // Render Sources List
     const sourcesList = document.getElementById('sourcesList');
