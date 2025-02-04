@@ -3,31 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Taiwan Economy Dependence on Semiconductors</title>
+    <title>Global Semiconductor Market</title>
     <link rel="stylesheet" href="styles.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
     <header>
-        <h1>Taiwan Economy Dependence on Semiconductors</h1>
+        <h1>Global Semiconductor Market</h1>
     </header>
     <main>
         <div class="charts-grid">
             <div class="chart-container">
-                <canvas id="gdpChart"></canvas>
-                <p id="gdpDescription"></p>
+                <canvas id="countryManufacturingShareChart"></canvas>
+                <p id="countryManufacturingShareDescription"></p>
             </div>
             <div class="chart-container">
-                <canvas id="exportChart"></canvas>
-                <p id="exportDescription"></p>
+                <canvas id="companyMarketShareChart"></canvas>
+                <p id="companyMarketShareDescription"></p>
             </div>
             <div class="chart-container">
-                <canvas id="tsmcMarketShareChart"></canvas>
-                <p id="tsmcMarketShareDescription"></p>
+                <canvas id="semiconductorTypeChart"></canvas>
+                <p id="semiconductorTypeDescription"></p>
             </div>
             <div class="chart-container">
-                <canvas id="tsmcStockMarketImpactChart"></canvas>
-                <p id="tsmcStockMarketImpactDescription"></p>
+                <canvas id="revenueDistributionChart"></canvas>
+                <p id="revenueDistributionDescription"></p>
+            </div>
+            <div class="chart-container">
+                <canvas id="exportContributionChart"></canvas>
+                <p id="exportContributionDescription"></p>
             </div>
             <div class="chart-container">
                 <canvas id="employmentImpactChart"></canvas>
@@ -38,12 +42,8 @@
                 <p id="researchDevelopmentDescription"></p>
             </div>
             <div class="chart-container">
-                <canvas id="globalExportShareChart"></canvas>
-                <p id="globalExportShareDescription"></p>
-            </div>
-            <div class="chart-container">
-                <canvas id="sectorDiversificationChart"></canvas>
-                <p id="sectorDiversificationDescription"></p>
+                <canvas id="futureGrowthChart"></canvas>
+                <p id="futureGrowthDescription"></p>
             </div>
         </div>
         <section class="sources-section">
@@ -52,7 +52,7 @@
         </section>
     </main>
     <footer>
-        <p>&copy; 2025 Taiwan Semiconductor Economy Analysis</p>
+        <p>&copy; 2025 Global Semiconductor Market Analysis</p>
     </footer>
     <script src="scripts.js"></script>
 </body>
