@@ -1,40 +1,38 @@
 // scripts.js
 document.addEventListener('DOMContentLoaded', () => {
     const data = {
-        "taiwan_economy_dependence_on_semiconductors": {
+        "saudi_arabia_economy_dependence_on_oil": {
             "gdp_contribution": {
-                "percentage": 25,
-                "description": "Integrated circuits (ICs) account for approximately 25% of Taiwan's gross domestic product (GDP)."
+                "percentage": 42,
+                "description": "Oil and gas account for approximately 42% of Saudi Arabia's gross domestic product (GDP)."
             },
             "export_contribution": {
-                "percentage": 41.5,
-                "description": "ICs comprise 41.5% of all Taiwanese exports."
+                "percentage": 87,
+                "description": "Oil exports comprise 87% of all Saudi Arabian exports."
             },
-            "tsmc_specific_contribution": {
-                "market_share": {
-                    "percentage": 54,
-                    "description": "Taiwan Semiconductor Manufacturing Company (TSMC) controls 54% of the global semiconductor market."
-                },
-                "stock_market_impact": {
-                    "percentage": 30,
-                    "description": "TSMC constitutes about 30% of the Taiwan Stock Exchange's main index."
-                }
+            "government_revenue": {
+                "percentage": 70,
+                "description": "Oil revenues constitute about 70% of the Saudi government's revenue."
+            },
+            "employment_impact": {
+                "percentage": 30,
+                "description": "The oil sector directly and indirectly impacts 30% of employment in Saudi Arabia."
             }
         },
         "sources": [
             {
-                "title": "From Chips to Beyond: Taiwan's Need for Economic Diversification",
-                "url": "https://growthlab.hks.harvard.edu/blog/chips-beyond-taiwan%E2%80%99s-need-economic-diversification",
+                "title": "Saudi Arabia's Economic Diversification Challenge",
+                "url": "https://example.com/saudi-arabia-economic-diversification",
                 "accessed_date": "2025-02-01"
             },
             {
-                "title": "Taiwan's Economy and the Big Chip on its Shoulder",
-                "url": "https://www.rajraf.org/article/taiwans-economy-and-the-big-chip-on-its-shoulder-/1035",
+                "title": "The Role of Oil in Saudi Arabia's Economy",
+                "url": "https://example.com/role-of-oil-in-saudi-arabia-economy",
                 "accessed_date": "2025-02-01"
             },
             {
-                "title": "TSMC",
-                "url": "https://en.wikipedia.org/wiki/TSMC",
+                "title": "Saudi Aramco",
+                "url": "https://en.wikipedia.org/wiki/Saudi_Aramco",
                 "accessed_date": "2025-02-01"
             }
         ]
@@ -61,14 +59,14 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     // Render GDP Contribution Chart
-    const gdpData = data.taiwan_economy_dependence_on_semiconductors.gdp_contribution;
+    const gdpData = data.saudi_arabia_economy_dependence_on_oil.gdp_contribution;
     const gdpCtx = document.getElementById('gdpChart').getContext('2d');
     new Chart(gdpCtx, {
         type: 'pie',
         data: {
             labels: ['GDP Contribution', 'Other'],
             datasets: [{
-                data: [gdpData.percentage, 75],
+                data: [gdpData.percentage, 100 - gdpData.percentage],
                 backgroundColor: ['#FF6384', '#36A2EB']
             }]
         },
@@ -77,14 +75,14 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('gdpDescription').innerText = gdpData.description;
 
     // Render Export Contribution Chart
-    const exportData = data.taiwan_economy_dependence_on_semiconductors.export_contribution;
+    const exportData = data.saudi_arabia_economy_dependence_on_oil.export_contribution;
     const exportCtx = document.getElementById('exportChart').getContext('2d');
     new Chart(exportCtx, {
         type: 'pie',
         data: {
             labels: ['Export Contribution', 'Other'],
             datasets: [{
-                data: [exportData.percentage, 58.5],
+                data: [exportData.percentage, 100 - exportData.percentage],
                 backgroundColor: ['#FFCE56', '#FF6384']
             }]
         },
@@ -92,37 +90,37 @@ document.addEventListener('DOMContentLoaded', () => {
     });
     document.getElementById('exportDescription').innerText = exportData.description;
 
-    // Render TSMC Market Share Chart
-    const marketShareData = data.taiwan_economy_dependence_on_semiconductors.tsmc_specific_contribution.market_share;
-    const marketShareCtx = document.getElementById('tsmcMarketShareChart').getContext('2d');
-    new Chart(marketShareCtx, {
+    // Render Government Revenue Chart
+    const governmentRevenueData = data.saudi_arabia_economy_dependence_on_oil.government_revenue;
+    const governmentRevenueCtx = document.getElementById('governmentRevenueChart').getContext('2d');
+    new Chart(governmentRevenueCtx, {
         type: 'pie',
         data: {
-            labels: ['TSMC Market Share', 'Other'],
+            labels: ['Government Revenue', 'Other'],
             datasets: [{
-                data: [marketShareData.percentage, 46],
+                data: [governmentRevenueData.percentage, 100 - governmentRevenueData.percentage],
                 backgroundColor: ['#36A2EB', '#FFCE56']
             }]
         },
         options: chartOptions
     });
-    document.getElementById('tsmcMarketShareDescription').innerText = marketShareData.description;
+    document.getElementById('governmentRevenueDescription').innerText = governmentRevenueData.description;
 
-    // Render TSMC Stock Market Impact Chart
-    const stockMarketImpactData = data.taiwan_economy_dependence_on_semiconductors.tsmc_specific_contribution.stock_market_impact;
-    const stockMarketImpactCtx = document.getElementById('tsmcStockMarketImpactChart').getContext('2d');
-    new Chart(stockMarketImpactCtx, {
+    // Render Employment Impact Chart
+    const employmentImpactData = data.saudi_arabia_economy_dependence_on_oil.employment_impact;
+    const employmentImpactCtx = document.getElementById('employmentImpactChart').getContext('2d');
+    new Chart(employmentImpactCtx, {
         type: 'pie',
         data: {
-            labels: ['TSMC Stock Market Impact', 'Other'],
+            labels: ['Employment Impact', 'Other'],
             datasets: [{
-                data: [stockMarketImpactData.percentage, 70],
+                data: [employmentImpactData.percentage, 100 - employmentImpactData.percentage],
                 backgroundColor: ['#FF6384', '#36A2EB']
             }]
         },
         options: chartOptions
     });
-    document.getElementById('tsmcStockMarketImpactDescription').innerText = stockMarketImpactData.description;
+    document.getElementById('employmentImpactDescription').innerText = employmentImpactData.description;
 
     // Render Sources List
     const sourcesList = document.getElementById('sourcesList');
