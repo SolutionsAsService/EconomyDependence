@@ -1,52 +1,59 @@
 // scripts.js
 document.addEventListener('DOMContentLoaded', () => {
     const data = {
-        "qatar_economy_dependence_on_natural_gas": {
+        "botswana_economy_dependence_on_diamonds": {
             "gdp_contribution": {
-                "natural_gas": 58,
-                "oil": 24,
-                "others": 18,
-                "description": "Natural gas and oil significantly contribute to Qatar's GDP."
+                "diamonds": 20,
+                "tourism": 10,
+                "agriculture": 5,
+                "services": 25,
+                "other": 40,
+                "description": "Diamonds contribute significantly to Botswana's GDP."
             },
             "export_contribution": {
-                "natural_gas": 70,
-                "oil": 20,
-                "others": 10,
-                "description": "Natural gas dominates Qatar's export contributions."
+                "diamonds": 85,
+                "copper": 5,
+                "beef": 3,
+                "textiles": 2,
+                "other": 5,
+                "description": "Diamonds dominate Botswana's export contributions."
             },
             "government_revenue": {
-                "natural_gas": 55,
-                "oil": 30,
-                "others": 15,
-                "description": "Natural gas is a primary source of government revenue."
+                "diamonds": 50,
+                "taxes": 30,
+                "services": 10,
+                "other": 10,
+                "description": "Diamond revenues are a primary source of government revenue."
             },
             "employment_impact": {
-                "direct": 25,
-                "indirect": 15,
-                "others": 60,
-                "description": "The natural gas sector has a significant direct and indirect employment impact."
+                "direct": 10,
+                "indirect": 20,
+                "other": 70,
+                "description": "The diamond sector has a significant direct and indirect employment impact."
             },
             "global_market_share": {
-                "natural_gas": 30,
-                "oil": 5,
-                "others": 65,
-                "description": "Qatar holds a substantial share of the global natural gas market."
+                "diamonds": 30,
+                "other_minerals": 10,
+                "services": 20,
+                "agriculture": 5,
+                "other": 35,
+                "description": "Botswana holds a substantial share of the global diamond market."
             }
         },
         "sources": [
             {
-                "title": "Qatar's Economic Outlook",
-                "url": "https://example.com/qatars-economic-outlook",
+                "title": "Botswana's Economic Outlook",
+                "url": "https://example.com/botswanas-economic-outlook",
                 "accessed_date": "2025-02-01"
             },
             {
-                "title": "The Role of Natural Gas in Qatar's Economy",
-                "url": "https://example.com/role-of-natural-gas-in-qatar-economy",
+                "title": "The Role of Diamonds in Botswana's Economy",
+                "url": "https://example.com/role-of-diamonds-in-botswana-economy",
                 "accessed_date": "2025-02-01"
             },
             {
-                "title": "Qatar Petroleum",
-                "url": "https://en.wikipedia.org/wiki/Qatar_Petroleum",
+                "title": "Debswana",
+                "url": "https://en.wikipedia.org/wiki/Debswana",
                 "accessed_date": "2025-02-01"
             }
         ]
@@ -57,39 +64,46 @@ document.addEventListener('DOMContentLoaded', () => {
             legend: {
                 labels: {
                     font: {
-                        size: 16
+                        size: 18
                     }
                 }
             },
             tooltip: {
                 bodyFont: {
-                    size: 14
+                    size: 16
                 },
                 titleFont: {
-                    size: 16
+                    size: 18
                 }
             }
         }
     };
 
     const colors = {
-        naturalGas: '#1f78b4',
-        oil: '#33a02c',
-        others: '#fb9a99',
-        direct: '#e31a1c',
-        indirect: '#ff7f00'
+        diamonds: '#00695c',
+        tourism: '#00796b',
+        agriculture: '#00897b',
+        services: '#009688',
+        other: '#26a69a',
+        copper: '#80cbc4',
+        beef: '#4db6ac',
+        textiles: '#b2dfdb',
+        taxes: '#004d40',
+        direct: '#00796b',
+        indirect: '#004d40',
+        other_minerals: '#80cbc4'
     };
 
     // Render GDP Contribution Chart
-    const gdpData = data.qatar_economy_dependence_on_natural_gas.gdp_contribution;
+    const gdpData = data.botswana_economy_dependence_on_diamonds.gdp_contribution;
     const gdpCtx = document.getElementById('gdpChart').getContext('2d');
     new Chart(gdpCtx, {
-        type: 'pie',
+        type: 'doughnut',
         data: {
-            labels: ['Natural Gas', 'Oil', 'Others'],
+            labels: ['Diamonds', 'Tourism', 'Agriculture', 'Services', 'Other'],
             datasets: [{
-                data: [gdpData.natural_gas, gdpData.oil, gdpData.others],
-                backgroundColor: [colors.naturalGas, colors.oil, colors.others]
+                data: [gdpData.diamonds, gdpData.tourism, gdpData.agriculture, gdpData.services, gdpData.other],
+                backgroundColor: [colors.diamonds, colors.tourism, colors.agriculture, colors.services, colors.other]
             }]
         },
         options: chartOptions
@@ -97,15 +111,15 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('gdpDescription').innerText = gdpData.description;
 
     // Render Export Contribution Chart
-    const exportData = data.qatar_economy_dependence_on_natural_gas.export_contribution;
+    const exportData = data.botswana_economy_dependence_on_diamonds.export_contribution;
     const exportCtx = document.getElementById('exportChart').getContext('2d');
     new Chart(exportCtx, {
-        type: 'pie',
+        type: 'doughnut',
         data: {
-            labels: ['Natural Gas', 'Oil', 'Others'],
+            labels: ['Diamonds', 'Copper', 'Beef', 'Textiles', 'Other'],
             datasets: [{
-                data: [exportData.natural_gas, exportData.oil, exportData.others],
-                backgroundColor: [colors.naturalGas, colors.oil, colors.others]
+                data: [exportData.diamonds, exportData.copper, exportData.beef, exportData.textiles, exportData.other],
+                backgroundColor: [colors.diamonds, colors.copper, colors.beef, colors.textiles, colors.other]
             }]
         },
         options: chartOptions
@@ -113,15 +127,15 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('exportDescription').innerText = exportData.description;
 
     // Render Government Revenue Chart
-    const governmentRevenueData = data.qatar_economy_dependence_on_natural_gas.government_revenue;
+    const governmentRevenueData = data.botswana_economy_dependence_on_diamonds.government_revenue;
     const governmentRevenueCtx = document.getElementById('governmentRevenueChart').getContext('2d');
     new Chart(governmentRevenueCtx, {
-        type: 'pie',
+        type: 'doughnut',
         data: {
-            labels: ['Natural Gas', 'Oil', 'Others'],
+            labels: ['Diamonds', 'Taxes', 'Services', 'Other'],
             datasets: [{
-                data: [governmentRevenueData.natural_gas, governmentRevenueData.oil, governmentRevenueData.others],
-                backgroundColor: [colors.naturalGas, colors.oil, colors.others]
+                data: [governmentRevenueData.diamonds, governmentRevenueData.taxes, governmentRevenueData.services, governmentRevenueData.other],
+                backgroundColor: [colors.diamonds, colors.taxes, colors.services, colors.other]
             }]
         },
         options: chartOptions
@@ -129,15 +143,15 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('governmentRevenueDescription').innerText = governmentRevenueData.description;
 
     // Render Employment Impact Chart
-    const employmentImpactData = data.qatar_economy_dependence_on_natural_gas.employment_impact;
+    const employmentImpactData = data.botswana_economy_dependence_on_diamonds.employment_impact;
     const employmentImpactCtx = document.getElementById('employmentImpactChart').getContext('2d');
     new Chart(employmentImpactCtx, {
-        type: 'pie',
+        type: 'doughnut',
         data: {
-            labels: ['Direct', 'Indirect', 'Others'],
+            labels: ['Direct', 'Indirect', 'Other'],
             datasets: [{
-                data: [employmentImpactData.direct, employmentImpactData.indirect, employmentImpactData.others],
-                backgroundColor: [colors.direct, colors.indirect, colors.others]
+                data: [employmentImpactData.direct, employmentImpactData.indirect, employmentImpactData.other],
+                backgroundColor: [colors.direct, colors.indirect, colors.other]
             }]
         },
         options: chartOptions
@@ -145,15 +159,15 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('employmentImpactDescription').innerText = employmentImpactData.description;
 
     // Render Global Market Share Chart
-    const globalMarketShareData = data.qatar_economy_dependence_on_natural_gas.global_market_share;
+    const globalMarketShareData = data.botswana_economy_dependence_on_diamonds.global_market_share;
     const globalMarketShareCtx = document.getElementById('globalMarketShareChart').getContext('2d');
     new Chart(globalMarketShareCtx, {
-        type: 'pie',
+        type: 'doughnut',
         data: {
-            labels: ['Natural Gas', 'Oil', 'Others'],
+            labels: ['Diamonds', 'Other Minerals', 'Services', 'Agriculture', 'Other'],
             datasets: [{
-                data: [globalMarketShareData.natural_gas, globalMarketShareData.oil, globalMarketShareData.others],
-                backgroundColor: [colors.naturalGas, colors.oil, colors.others]
+                data: [globalMarketShareData.diamonds, globalMarketShareData.other_minerals, globalMarketShareData.services, globalMarketShareData.agriculture, globalMarketShareData.other],
+                backgroundColor: [colors.diamonds, colors.other_minerals, colors.services, colors.agriculture, colors.other]
             }]
         },
         options: chartOptions
