@@ -9,7 +9,7 @@ body {
 }
 
 header {
-    background: #0047AB; /* Deep blue */
+    background: #d52b1e; /* Russian Red */
     color: #fff;
     padding: 1rem 0;
     text-align: center;
@@ -75,7 +75,7 @@ canvas {
 }
 
 .sources-section ul li a {
-    color: #0047AB;
+    color: #d52b1e; /* Russian Red */
     text-decoration: none;
 }
 
