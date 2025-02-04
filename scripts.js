@@ -40,6 +40,26 @@ document.addEventListener('DOMContentLoaded', () => {
         ]
     };
 
+    const chartOptions = {
+        plugins: {
+            legend: {
+                labels: {
+                    font: {
+                        size: 16
+                    }
+                }
+            },
+            tooltip: {
+                bodyFont: {
+                    size: 14
+                },
+                titleFont: {
+                    size: 16
+                }
+            }
+        }
+    };
+
     // Render GDP Contribution Chart
     const gdpData = data.taiwan_economy_dependence_on_semiconductors.gdp_contribution;
     const gdpCtx = document.getElementById('gdpChart').getContext('2d');
@@ -51,7 +71,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 data: [gdpData.percentage, 75],
                 backgroundColor: ['#FF6384', '#36A2EB']
             }]
-        }
+        },
+        options: chartOptions
     });
     document.getElementById('gdpDescription').innerText = gdpData.description;
 
@@ -66,7 +87,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 data: [exportData.percentage, 58.5],
                 backgroundColor: ['#FFCE56', '#FF6384']
             }]
-        }
+        },
+        options: chartOptions
     });
     document.getElementById('exportDescription').innerText = exportData.description;
 
@@ -81,7 +103,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 data: [marketShareData.percentage, 46],
                 backgroundColor: ['#36A2EB', '#FFCE56']
             }]
-        }
+        },
+        options: chartOptions
     });
     document.getElementById('tsmcMarketShareDescription').innerText = marketShareData.description;
 
@@ -96,7 +119,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 data: [stockMarketImpactData.percentage, 70],
                 backgroundColor: ['#FF6384', '#36A2EB']
             }]
-        }
+        },
+        options: chartOptions
     });
     document.getElementById('tsmcStockMarketImpactDescription').innerText = stockMarketImpactData.description;
 
